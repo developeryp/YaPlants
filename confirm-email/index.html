@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Mail bestätigen - Plantr</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a2f1a 0%, #0d1a0d 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon svg { width: 40px; height: 40px; }
+        .icon-loading { background: rgba(34, 197, 94, 0.15); }
+        .icon-loading svg { fill: #22c55e; }
+        .icon-success { background: rgba(34, 197, 94, 0.15); }
+        .icon-success svg { fill: #22c55e; }
+        .icon-error { background: rgba(239, 68, 68, 0.15); }
+        .icon-error svg { fill: #ef4444; }
+        h1 {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(34, 197, 94, 0.3);
+            border-top-color: #22c55e;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Loading State -->
+        <div id="loadingContainer">
+            <div class="icon icon-loading">
+                <div class="loading-spinner"></div>
+            </div>
+            <h1 data-i18n="loadingTitle">Wird überprüft...</h1>
+            <p data-i18n="loadingText">Bitte warte einen Moment.</p>
+        </div>
+
+        <!-- Success State -->
+        <div id="successContainer" class="hidden">
+            <div class="icon icon-success">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <h1 data-i18n="successTitle">E-Mail bestätigt! ✓</h1>
+            <p data-i18n="successText">Deine neue E-Mail-Adresse wurde erfolgreich bestätigt.<br>Du kannst diese Seite jetzt schließen.</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorContainer" class="hidden">
+            <div class="icon icon-error">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+            </div>
+            <h1 data-i18n="errorTitle">Link abgelaufen</h1>
+            <p data-i18n="errorText">Dieser Link ist leider abgelaufen oder ungültig.<br>Bitte fordere in der App einen neuen Bestätigungslink an.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+    (function() {
+        // ---------- i18n ----------
+        function detectLang() {
+            try {
+                var q = new URLSearchParams(window.location.search);
+                var forced = (q.get('lang') || '').toLowerCase();
+                if (forced === 'de' || forced === 'en') return forced;
+            } catch (e) {}
+            var langs = (navigator.languages && navigator.languages.length)
+                ? navigator.languages
+                : [navigator.language || 'en'];
+            var primary = (langs[0] || 'en').toLowerCase();
+            return primary.startsWith('de') ? 'de' : 'en';
+        }
+
+        var I18N = {
+            de: {
+                pageTitle: "E-Mail bestätigen - Plantr",
+                loadingTitle: "Wird überprüft...",
+                loadingText: "Bitte warte einen Moment.",
+                successTitle: "E-Mail bestätigt! ✓",
+                successText: "Deine neue E-Mail-Adresse wurde erfolgreich bestätigt.<br>Du kannst diese Seite jetzt schließen.",
+                errorTitle: "Link abgelaufen",
+                errorText: "Dieser Link ist leider abgelaufen oder ungültig.<br>Bitte fordere in der App einen neuen Bestätigungslink an."
+            },
+            en: {
+                pageTitle: "Confirm email - Plantr",
+                loadingTitle: "Verifying...",
+                loadingText: "Please wait a moment.",
+                successTitle: "Email confirmed! ✓",
+                successText: "Your new email address has been confirmed.<br>You can close this page now.",
+                errorTitle: "Link expired",
+                errorText: "This link is expired or invalid.<br>Please request a new confirmation link in the app."
+            }
+        };
+
+        var LANG = detectLang();
+
+        function applyI18n(lang) {
+            document.documentElement.lang = lang;
+            if (I18N[lang] && I18N[lang].pageTitle) document.title = I18N[lang].pageTitle;
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (I18N[lang] && I18N[lang][key] != null) el.innerHTML = I18N[lang][key];
+            });
+        }
+
+        applyI18n(LANG);
+
+        // ---------- Supabase ----------
+        var sbClient = window.supabase.createClient(
+            'https://fsxwzcduvhmhiqfzmslh.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzeHd6Y2R1dmhtaGlxZnptc2xoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU1OTQxODEsImV4cCI6MjA4MTE3MDE4MX0.FfYWNhE1n6llNSes1jeLwIr2blqqxEZ8rOHejgHOrtE'
+        );
+
+        function showSuccess() {
+            document.getElementById('loadingContainer').classList.add('hidden');
+            document.getElementById('successContainer').classList.remove('hidden');
+        }
+
+        function showError() {
+            document.getElementById('loadingContainer').classList.add('hidden');
+            document.getElementById('errorContainer').classList.remove('hidden');
+        }
+
+        (async function init() {
+            try {
+                const url = new URL(window.location.href);
+                const tokenHash = url.searchParams.get("token_hash");
+                const type = url.searchParams.get("type");
+
+                if (tokenHash && type === "email_change") {
+                    const { error } = await sbClient.auth.verifyOtp({
+                        token_hash: tokenHash,
+                        type: 'email_change'
+                    });
+                    if (error) {
+                        console.error("Verify error:", error);
+                        showError();
+                        return;
+                    }
+                    showSuccess();
+                    return;
+                }
+
+                showError();
+            } catch (e) {
+                console.error("Init error:", e);
+                showError();
+            }
+        })();
+    })();
+    </script>
+</body>
+</html>
