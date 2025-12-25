@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passwort zurücksetzen</title>
+    <title>Passwort zurücksetzen - Plantr</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
@@ -81,7 +81,8 @@
             position: relative;
         }
         
-        input {
+        input[type="password"],
+        input[type="text"] {
             width: 100%;
             padding: 14px 16px;
             padding-right: 48px;
@@ -156,7 +157,7 @@
             flex-shrink: 0;
         }
         
-        button[type="submit"] {
+        .submit-btn {
             width: 100%;
             padding: 16px;
             background: linear-gradient(135deg, #4CAF50, #2E7D32);
@@ -169,12 +170,12 @@
             transition: all 0.2s;
         }
         
-        button[type="submit"]:hover {
+        .submit-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(76, 175, 80, 0.3);
         }
         
-        button[type="submit"]:disabled {
+        .submit-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
@@ -241,8 +242,7 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
-        /* Expired/Error State */
+
         .expired-container {
             text-align: center;
             display: none;
@@ -277,16 +277,6 @@
             line-height: 1.5;
             margin-bottom: 24px;
         }
-        
-        .back-link {
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .back-link:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -299,18 +289,18 @@
                 </svg>
             </div>
             
-            <h1>Neues Passwort festlegen</h1>
-            <p class="subtitle">Gib dein neues Passwort für die PflanzenApp ein.</p>
+            <h1>!Neues Passwort festlegen</h1>
+            <p class="subtitle">Gib dein neues Passwort für Plantr ein.</p>
             
             <div class="error" id="errorMessage"></div>
             
-            <form id="resetForm">
+            <form id="resetForm" onsubmit="handleSubmit(event)">
                 <div class="form-group">
                     <label for="password">Neues Passwort</label>
                     <div class="input-wrapper">
-                        <input type="password" id="password" placeholder="Mindestens 6 Zeichen" required>
+                        <input type="password" id="password" placeholder="Mindestens 6 Zeichen" oninput="validatePassword()" required>
                         <button type="button" class="toggle-password" onclick="togglePassword('password')">
-                            <svg id="eyeIcon1" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
                         </button>
                     </div>
                 </div>
@@ -318,9 +308,9 @@
                 <div class="form-group">
                     <label for="confirmPassword">Passwort bestätigen</label>
                     <div class="input-wrapper">
-                        <input type="password" id="confirmPassword" placeholder="Passwort wiederholen" required>
+                        <input type="password" id="confirmPassword" placeholder="Passwort wiederholen" oninput="validatePassword()" required>
                         <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
-                            <svg id="eyeIcon2" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
                         </button>
                     </div>
                 </div>
@@ -353,7 +343,7 @@
                     </div>
                 </div>
                 
-                <button type="submit" id="submitBtn" disabled>
+                <button type="submit" id="submitBtn" class="submit-btn" disabled>
                     Passwort ändern
                 </button>
             </form>
@@ -365,7 +355,7 @@
                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
             </div>
             <h2>Passwort geändert! ✓</h2>
-            <p>Dein Passwort wurde erfolgreich aktualisiert.<br>Du kannst dich jetzt in der PflanzenApp mit deinem neuen Passwort anmelden.</p>
+            <p>Dein Passwort wurde erfolgreich aktualisiert.<br>Du kannst dich jetzt in Plantr mit deinem neuen Passwort anmelden.</p>
         </div>
         
         <!-- Expired/Error Container -->
@@ -379,20 +369,88 @@
     </div>
     
     <script>
-        // ═══════════════════════════════════════════════════════════════
-        // WICHTIG: Ersetze diese Werte mit deinen Supabase-Daten!
-        // ═══════════════════════════════════════════════════════════════
+        // Supabase Setup
         const SUPABASE_URL = 'https://fsxwzcduvhmhiqfzmslh.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzeHd6Y2R1dmhtaGlxZnptc2xoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU1OTQxODEsImV4cCI6MjA4MTE3MDE4MX0.FfYWNhE1n6llNSes1jeLwIr2blqqxEZ8rOHejgHOrtE'; 
-        // ═══════════════════════════════════════════════════════════════
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzeHd6Y2R1dmhtaGlxZnptc2xoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU1OTQxODEsImV4cCI6MjA4MTE3MDE4MX0.FfYWNhE1n6llNSes1jeLwIr2blqqxEZ8rOHejgHOrtE';
         
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
-        let accessToken = null;
-        let refreshToken = null;
+        // Password validation function
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            
+            const hasLength = password.length >= 6;
+            const hasLower = /[a-z]/.test(password);
+            const hasUpper = /[A-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSpecial = /[!@#$%^&*(),.?":{}|<>_\-+=\[\]\\\/`~]/.test(password);
+            const matches = password === confirm && confirm.length > 0;
+            
+            // Update UI
+            document.getElementById('reqLength').className = 'requirement' + (hasLength ? ' valid' : '');
+            document.getElementById('reqLower').className = 'requirement' + (hasLower ? ' valid' : '');
+            document.getElementById('reqUpper').className = 'requirement' + (hasUpper ? ' valid' : '');
+            document.getElementById('reqNumber').className = 'requirement' + (hasNumber ? ' valid' : '');
+            document.getElementById('reqSpecial').className = 'requirement' + (hasSpecial ? ' valid' : '');
+            document.getElementById('reqMatch').className = 'requirement' + (matches ? ' valid' : '');
+            
+            const isValid = hasLength && hasLower && hasUpper && hasNumber && hasSpecial && matches;
+            document.getElementById('submitBtn').disabled = !isValid;
+            
+            return isValid;
+        }
         
-        // Parse URL for tokens
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+        
+        // Form submit handler
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            if (!validatePassword()) return;
+            
+            const errorDiv = document.getElementById('errorMessage');
+            const submitBtn = document.getElementById('submitBtn');
+            const password = document.getElementById('password').value;
+            
+            errorDiv.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span>Wird geändert...';
+            
+            try {
+                const { data, error } = await supabase.auth.updateUser({
+                    password: password
+                });
+                
+                if (error) throw error;
+                
+                // Success!
+                document.getElementById('formContainer').style.display = 'none';
+                document.getElementById('successContainer').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Update error:', error);
+                errorDiv.textContent = 'Fehler: ' + (error.message || 'Unbekannter Fehler');
+                errorDiv.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Passwort ändern';
+            }
+        }
+        
+        // Show expired state
+        function showExpired() {
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('expiredContainer').style.display = 'block';
+        }
+        
+        // Initialize on page load
         async function init() {
+            console.log('Initializing...');
+            
             const hash = window.location.hash.substring(1);
             const params = new URLSearchParams(hash);
             
@@ -401,16 +459,19 @@
             const errorCode = params.get('error_code');
             
             if (error || errorCode) {
+                console.log('Error in URL:', error, errorCode);
                 showExpired();
                 return;
             }
             
-            accessToken = params.get('access_token');
-            refreshToken = params.get('refresh_token');
+            const accessToken = params.get('access_token');
+            const refreshToken = params.get('refresh_token');
             const type = params.get('type');
             
+            console.log('Token type:', type);
+            console.log('Has access token:', !!accessToken);
+            
             if (!accessToken || type !== 'recovery') {
-                // Also check query params
                 const queryParams = new URLSearchParams(window.location.search);
                 if (queryParams.get('error_code')) {
                     showExpired();
@@ -433,93 +494,17 @@
                     return;
                 }
                 
-                // Session valid, show form
-                document.getElementById('formContainer').style.display = 'block';
+                console.log('Session set successfully');
+                // Form is already visible by default
+                
             } catch (e) {
                 console.error('Init error:', e);
                 showExpired();
             }
         }
         
-        function showExpired() {
-            document.getElementById('formContainer').style.display = 'none';
-            document.getElementById('expiredContainer').style.display = 'block';
-        }
-        
-        // Password validation
-        const passwordInput = document.getElementById('password');
-        const confirmInput = document.getElementById('confirmPassword');
-        const submitBtn = document.getElementById('submitBtn');
-        
-        function validatePassword() {
-            const password = passwordInput.value;
-            const confirm = confirmInput.value;
-            
-            const hasLength = password.length >= 6;
-            const hasLower = /[a-z]/.test(password);
-            const hasUpper = /[A-Z]/.test(password);
-            const hasNumber = /[0-9]/.test(password);
-            const hasSpecial = /[!@#$%^&*(),.?":{}|<>_\-+=\[\]\\\/`~]/.test(password);
-            const matches = password === confirm && confirm.length > 0;
-            
-            document.getElementById('reqLength').classList.toggle('valid', hasLength);
-            document.getElementById('reqLower').classList.toggle('valid', hasLower);
-            document.getElementById('reqUpper').classList.toggle('valid', hasUpper);
-            document.getElementById('reqNumber').classList.toggle('valid', hasNumber);
-            document.getElementById('reqSpecial').classList.toggle('valid', hasSpecial);
-            document.getElementById('reqMatch').classList.toggle('valid', matches);
-            
-            const isValid = hasLength && hasLower && hasUpper && hasNumber && hasSpecial && matches;
-            submitBtn.disabled = !isValid;
-            
-            return isValid;
-        }
-        
-        passwordInput.addEventListener('input', validatePassword);
-        confirmInput.addEventListener('input', validatePassword);
-        
-        // Toggle password visibility
-        function togglePassword(inputId) {
-            const input = document.getElementById(inputId);
-            input.type = input.type === 'password' ? 'text' : 'password';
-        }
-        
-        // Form submit
-        document.getElementById('resetForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            if (!validatePassword()) return;
-            
-            const errorDiv = document.getElementById('errorMessage');
-            errorDiv.style.display = 'none';
-            
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="loading"></span>Wird geändert...';
-            
-            try {
-                const { data, error } = await supabase.auth.updateUser({
-                    password: passwordInput.value
-                });
-                
-                if (error) {
-                    throw error;
-                }
-                
-                // Success!
-                document.getElementById('formContainer').style.display = 'none';
-                document.getElementById('successContainer').style.display = 'block';
-                
-            } catch (error) {
-                console.error('Update error:', error);
-                errorDiv.textContent = 'Fehler: ' + (error.message || 'Unbekannter Fehler');
-                errorDiv.style.display = 'block';
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Passwort ändern';
-            }
-        });
-        
-        // Initialize
-        init();
+        // Run init when page loads
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
