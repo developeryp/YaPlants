@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzerklärung – PflanzenApp</title>
+    <style>
+        :root {
+            --bg: #BDDAB8;
+            --green-dark: #1A4830;
+            --green: #238D47;
+            --green-light: #A3E6B8;
+            --mint: #C7F5E0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--mint) 50%, var(--green-light) 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--green-dark);
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(26, 72, 48, 0.15);
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        
+        .back-link:hover {
+            color: var(--green-dark);
+        }
+        
+        h1 {
+            color: var(--green-dark);
+            margin-bottom: 5px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .subtitle {
+            color: var(--green);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .last-updated {
+            background: var(--mint);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+        
+        h2 {
+            color: var(--green-dark);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--green-light);
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            color: var(--green);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: var(--mint);
+            border-left: 4px solid var(--green);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        
+        .region-box {
+            background: #f0f7f4;
+            border: 2px solid var(--green-light);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .region-box h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-box {
+            background: #f8f9fa;
+            border: 1px solid var(--green-light);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        
+        .service-box h4 {
+            color: var(--green-dark);
+            margin-bottom: 10px;
+        }
+        
+        a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-box {
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        
+        .contact-box h2 {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.3);
+            margin-top: 0;
+        }
+        
+        .contact-box a {
+            color: var(--mint);
+        }
+        
+        hr {
+            border: none;
+            height: 1px;
+            background: var(--green-light);
+            margin: 40px 0;
+        }
+        
+        .lang-en {
+            color: #555;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .toc ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .toc li {
+            margin-bottom: 5px;
+        }
+        
+        .flag {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Zurück / Back</a>
+        
+        <h1>📄 Datenschutzerklärung</h1>
+        <p class="subtitle">Privacy Policy</p>
+        
+        <div class="last-updated">
+            <strong>Stand / Last Updated:</strong> 25. Dezember 2025
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <h3>📑 Inhalt / Contents</h3>
+            <ul>
+                <li><a href="#general">Allgemeine Informationen / General Information</a></li>
+                <li><a href="#data">Erhobene Daten / Data We Collect</a></li>
+                <li><a href="#thirdparty">Drittanbieter / Third-Party Services</a></li>
+                <li><a href="#rights">Ihre Rechte / Your Rights</a></li>
+                <li><a href="#eu">🇪🇺 EU/EEA – DSGVO/GDPR</a></li>
+                <li><a href="#uk">🇬🇧 United Kingdom – UK GDPR</a></li>
+                <li><a href="#us">🇺🇸 United States – CCPA/CPRA</a></li>
+                <li><a href="#brazil">🇧🇷 Brazil – LGPD</a></li>
+                <li><a href="#canada">🇨🇦 Canada – PIPEDA</a></li>
+                <li><a href="#australia">🇦🇺 Australia – Privacy Act</a></li>
+                <li><a href="#children">Kinder / Children</a></li>
+                <li><a href="#international">Internationale Datenübertragung / International Data Transfers</a></li>
+                <li><a href="#contact">Kontakt / Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- ==================== GENERAL ==================== -->
+        <h2 id="general">1. Verantwortlicher / Controller</h2>
+        <p><strong>Yacouba Pfälzner</strong><br>
+        E-Mail: <a href="mailto:developeryp1@gmail.com">developeryp1@gmail.com</a></p>
+        <p>Die vollständige Postadresse wird auf Anfrage mitgeteilt.<br>
+        <span class="lang-en">The full postal address will be provided upon request.</span></p>
+
+        <!-- ==================== DATA COLLECTED ==================== -->
+        <h2 id="data">2. Welche Daten werden erhoben / What Data We Collect</h2>
+        
+        <h3>2.1 Registrierung und Profil / Registration and Profile</h3>
+        <ul>
+            <li><strong>E-Mail-Adresse / Email address</strong> – für Login und Kontowiederherstellung / for login and account recovery</li>
+            <li><strong>Benutzername / Username</strong> – zur Identifikation / for identification</li>
+            <li><strong>Vollständiger Name / Full name</strong> (optional) – zur Personalisierung / for personalization</li>
+            <li><strong>Profilbild / Profile photo</strong> (optional) – zur Darstellung / for display</li>
+            <li><strong>Kontoeinstellungen / Account settings</strong> – z.B. privates Profil / e.g., private profile</li>
+        </ul>
+
+        <h3>2.2 Pflanzen und Fotos / Plants and Photos</h3>
+        <ul>
+            <li><strong>Pflanzenfotos / Plant photos</strong> – von Ihnen hochgeladen / uploaded by you</li>
+            <li><strong>Pflanzenname / Plant name</strong> – manuell oder automatisch erkannt / manual or auto-identified</li>
+            <li><strong>Wissenschaftlicher Name / Scientific name</strong> – wenn verfügbar / when available</li>
+            <li><strong>Standort-Beschreibung / Location description</strong> – Textfeld, z.B. "Balkon" / text field, e.g., "Balcony"</li>
+        </ul>
+        
+        <div class="highlight-box">
+            <strong>🔒 Hinweis / Note:</strong> Wir erfassen <strong>keine GPS-Standortdaten</strong>. / We do <strong>not</strong> collect GPS location data.
+        </div>
+
+        <h3>2.3 Soziale Funktionen / Social Features</h3>
+        <ul>
+            <li><strong>Follower-Beziehungen / Follower relationships</strong></li>
+            <li><strong>Likes</strong></li>
+            <li><strong>Kommentare / Comments</strong></li>
+            <li><strong>Benachrichtigungen / Notifications</strong></li>
+        </ul>
+
+        <h3>2.4 Technische Daten / Technical Data</h3>
+        <ul>
+            <li><strong>Geräte-Token / Device token</strong> – für Push-Benachrichtigungen / for push notifications</li>
+            <li><strong>Gerätesprache / Device language</strong> – für korrekte Anzeige / for correct display</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>✅ Wir verkaufen Ihre Daten nicht / We do NOT sell your data.</strong><br>
+            Wir nutzen Ihre Daten nicht für Werbezwecke. / We do not use your data for advertising.
+        </div>
+
+        <!-- ==================== THIRD PARTY ==================== -->
+        <h2 id="thirdparty">3. Drittanbieter-Dienste / Third-Party Services</h2>
+
+        <div class="service-box">
+            <h4>🗄️ Supabase (Datenbank & Authentifizierung / Database & Authentication)</h4>
+            <p>Ihre Daten werden bei Supabase gespeichert (Server in EU/USA).<br>
+            <span class="lang-en">Your data is stored with Supabase (servers in EU/USA).</span></p>
+            <p><a href="https://supabase.com/privacy" target="_blank">Supabase Privacy Policy</a></p>
+        </div>
+
+        <div class="service-box">
+            <h4>🔥 Firebase Cloud Messaging (Google)</h4>
+            <p>Für Push-Benachrichtigungen. Anonymer Geräte-Token wird übertragen.<br>
+            <span class="lang-en">For push notifications. Anonymous device token is transmitted.</span></p>
+            <p><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Privacy</a></p>
+        </div>
+
+        <div class="service-box">
+            <h4>🌿 Pl@ntNet API (Pflanzenidentifikation / Plant Identification)</h4>
+            <p>Bei Nutzung der Pflanzenerkennung wird Ihr Foto an Pl@ntNet übertragen.<br>
+            <span class="lang-en">When using plant identification, your photo is sent to Pl@ntNet.</span></p>
+            <p><a href="https://plantnet.org/en/privacy-policy/" target="_blank">Pl@ntNet Privacy Policy</a></p>
+        </div>
+
+        <!-- ==================== YOUR RIGHTS ==================== -->
+        <h2 id="rights">4. Ihre Rechte / Your Rights</h2>
+        <p>Unabhängig von Ihrem Standort haben Sie folgende Rechte:<br>
+        <span class="lang-en">Regardless of your location, you have the following rights:</span></p>
+        <ul>
+            <li><strong>Auskunft / Access</strong> – Welche Daten wir speichern / What data we store</li>
+            <li><strong>Berichtigung / Rectification</strong> – Fehlerhafte Daten korrigieren / Correct inaccurate data</li>
+            <li><strong>Löschung / Deletion</strong> – Konto jederzeit löschen / Delete account anytime</li>
+            <li><strong>Datenübertragbarkeit / Portability</strong> – Ihre Daten anfordern / Request your data</li>
+            <li><strong>Widerruf / Withdrawal</strong> – Einwilligungen widerrufen / Withdraw consent</li>
+            <li><strong>Widerspruch / Objection</strong> – Verarbeitung widersprechen / Object to processing</li>
+        </ul>
+
+        <h3>Kontolöschung / Account Deletion</h3>
+        <p>Sie können Ihr Konto jederzeit in den Profileinstellungen löschen. Dabei werden <strong>alle</strong> Daten unwiderruflich gelöscht:<br>
+        <span class="lang-en">You can delete your account anytime in profile settings. This <strong>permanently</strong> deletes all data:</span></p>
+        <ul>
+            <li>Profildaten und Profilbild / Profile data and photo</li>
+            <li>Alle Pflanzen und Fotos / All plants and photos</li>
+            <li>Kommentare und Likes / Comments and likes</li>
+            <li>Follower-Beziehungen / Follower relationships</li>
+            <li>Benachrichtigungen / Notifications</li>
+        </ul>
+
+        <!-- ==================== EU GDPR ==================== -->
+        <div class="region-box" id="eu">
+            <h3><span class="flag">🇪🇺</span> EU/EEA – DSGVO (GDPR)</h3>
+            <p><strong>Rechtsgrundlage / Legal Basis:</strong></p>
+            <ul>
+                <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> – Vertragserfüllung / Contract performance</li>
+                <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> – Einwilligung für optionale Features / Consent for optional features</li>
+            </ul>
+            <p><strong>Speicherdauer / Retention:</strong> Solange Ihr Konto aktiv ist. / As long as your account is active.</p>
+            <p><strong>Beschwerderecht / Right to Complain:</strong> Sie können sich bei einer Datenschutzaufsichtsbehörde beschweren. / You may lodge a complaint with a supervisory authority.</p>
+        </div>
+
+        <!-- ==================== UK GDPR ==================== -->
+        <div class="region-box" id="uk">
+            <h3><span class="flag">🇬🇧</span> United Kingdom – UK GDPR</h3>
+            <p>For UK residents, we comply with the UK General Data Protection Regulation and the Data Protection Act 2018.</p>
+            <p><strong>Legal Basis:</strong> Contract performance and consent (same as EU GDPR).</p>
+            <p><strong>Your Rights:</strong> Same rights as EU residents, including access, rectification, erasure, and portability.</p>
+            <p><strong>Supervisory Authority:</strong> You may contact the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank">ico.org.uk</a>.</p>
+        </div>
+
+        <!-- ==================== US CCPA ==================== -->
+        <div class="region-box" id="us">
+            <h3><span class="flag">🇺🇸</span> United States – CCPA/CPRA (California)</h3>
+            <p>If you are a California resident, you have the following rights under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):</p>
+            <ul>
+                <li><strong>Right to Know</strong> – What personal information we collect and why</li>
+                <li><strong>Right to Delete</strong> – Request deletion of your personal information</li>
+                <li><strong>Right to Correct</strong> – Correct inaccurate information</li>
+                <li><strong>Right to Opt-Out of Sale</strong> – We do <strong>NOT</strong> sell your personal information</li>
+                <li><strong>Right to Non-Discrimination</strong> – We will not discriminate against you for exercising your rights</li>
+            </ul>
+            <p><strong>Categories of Personal Information Collected:</strong></p>
+            <ul>
+                <li>Identifiers (email, username)</li>
+                <li>Photos and user-generated content</li>
+                <li>Internet activity (interactions within the app)</li>
+            </ul>
+            <p><strong>We do NOT:</strong></p>
+            <ul>
+                <li>❌ Sell your personal information</li>
+                <li>❌ Share your data for cross-context behavioral advertising</li>
+                <li>❌ Use sensitive personal information for purposes beyond providing the service</li>
+            </ul>
+            <p>To exercise your rights, contact: <a href="mailto:developeryp1@gmail.com">developeryp1@gmail.com</a></p>
+        </div>
+
+        <!-- ==================== BRAZIL LGPD ==================== -->
+        <div class="region-box" id="brazil">
+            <h3><span class="flag">🇧🇷</span> Brazil – LGPD</h3>
+            <p>Para residentes no Brasil, cumprimos a Lei Geral de Proteção de Dados (LGPD).</p>
+            <p><strong>Base Legal / Legal Basis:</strong></p>
+            <ul>
+                <li>Execução de contrato (Art. 7, V) / Contract execution</li>
+                <li>Consentimento (Art. 7, I) / Consent</li>
+            </ul>
+            <p><strong>Seus Direitos / Your Rights:</strong></p>
+            <ul>
+                <li>Confirmação e acesso aos dados / Confirmation and access</li>
+                <li>Correção de dados incompletos / Correction of incomplete data</li>
+                <li>Anonimização, bloqueio ou eliminação / Anonymization, blocking, or deletion</li>
+                <li>Portabilidade dos dados / Data portability</li>
+                <li>Revogação do consentimento / Withdrawal of consent</li>
+            </ul>
+            <p><strong>Autoridade Nacional:</strong> ANPD – <a href="https://www.gov.br/anpd" target="_blank">gov.br/anpd</a></p>
+        </div>
+
+        <!-- ==================== CANADA PIPEDA ==================== -->
+        <div class="region-box" id="canada">
+            <h3><span class="flag">🇨🇦</span> Canada – PIPEDA</h3>
+            <p>For Canadian residents, we comply with the Personal Information Protection and Electronic Documents Act (PIPEDA).</p>
+            <p><strong>Principles we follow:</strong></p>
+            <ul>
+                <li><strong>Accountability</strong> – We are responsible for your data</li>
+                <li><strong>Consent</strong> – We obtain your consent for data collection</li>
+                <li><strong>Limiting Collection</strong> – We collect only necessary data</li>
+                <li><strong>Accuracy</strong> – We keep data accurate and up-to-date</li>
+                <li><strong>Safeguards</strong> – We protect data with security measures</li>
+                <li><strong>Openness</strong> – This policy explains our practices</li>
+                <li><strong>Individual Access</strong> – You can access and correct your data</li>
+            </ul>
+            <p><strong>Complaints:</strong> Office of the Privacy Commissioner of Canada – <a href="https://www.priv.gc.ca" target="_blank">priv.gc.ca</a></p>
+        </div>
+
+        <!-- ==================== AUSTRALIA ==================== -->
+        <div class="region-box" id="australia">
+            <h3><span class="flag">🇦🇺</span> Australia – Privacy Act 1988</h3>
+            <p>For Australian residents, we comply with the Australian Privacy Principles (APPs) under the Privacy Act 1988.</p>
+            <p><strong>Your Rights:</strong></p>
+            <ul>
+                <li>Access your personal information</li>
+                <li>Request correction of inaccurate information</li>
+                <li>Complain about privacy breaches</li>
+            </ul>
+            <p><strong>Complaints:</strong> Office of the Australian Information Commissioner (OAIC) – <a href="https://www.oaic.gov.au" target="_blank">oaic.gov.au</a></p>
+        </div>
+
+        <!-- ==================== CHILDREN ==================== -->
+        <h2 id="children">5. Kinder / Children</h2>
+        <div class="highlight-box">
+            <strong>🚸 Altersgrenze / Age Limit:</strong><br>
+            Diese App richtet sich nicht an Kinder unter 13 Jahren (oder 16 Jahren in einigen EU-Ländern).<br>
+            <span class="lang-en">This app is not intended for children under 13 (or 16 in some EU countries).</span>
+        </div>
+        <p>Wir erfassen wissentlich keine personenbezogenen Daten von Kindern. Wenn wir erfahren, dass ein Kind unter dem Mindestalter Daten übermittelt hat, werden diese unverzüglich gelöscht.<br>
+        <span class="lang-en">We do not knowingly collect personal data from children. If we learn that a child below the minimum age has provided data, we will delete it immediately.</span></p>
+        <p><strong>🇺🇸 COPPA Compliance:</strong> We comply with the Children's Online Privacy Protection Act. We do not knowingly collect information from children under 13 in the United States.</p>
+
+        <!-- ==================== INTERNATIONAL TRANSFERS ==================== -->
+        <h2 id="international">6. Internationale Datenübertragung / International Data Transfers</h2>
+        <p>Ihre Daten können in Länder außerhalb Ihres Wohnsitzlandes übertragen werden, einschließlich:<br>
+        <span class="lang-en">Your data may be transferred to countries outside your country of residence, including:</span></p>
+        <ul>
+            <li><strong>USA</strong> – Supabase, Firebase (Google)</li>
+            <li><strong>Frankreich</strong> – Pl@ntNet API</li>
+        </ul>
+        <p>Wir stellen sicher, dass angemessene Schutzmaßnahmen getroffen werden:<br>
+        <span class="lang-en">We ensure appropriate safeguards are in place:</span></p>
+        <ul>
+            <li>EU-Standardvertragsklauseln / EU Standard Contractual Clauses</li>
+            <li>Angemessenheitsbeschlüsse / Adequacy decisions</li>
+            <li>Zertifizierungen und verbindliche Unternehmensregeln / Certifications and binding corporate rules</li>
+        </ul>
+
+        <!-- ==================== SECURITY ==================== -->
+        <h2>7. Datensicherheit / Data Security</h2>
+        <p>Wir schützen Ihre Daten durch / We protect your data through:</p>
+        <ul>
+            <li>Verschlüsselte Übertragung (HTTPS/TLS) / Encrypted transmission</li>
+            <li>Sichere Authentifizierung / Secure authentication</li>
+            <li>Passwort-Mindestanforderungen / Password requirements</li>
+            <li>Row Level Security (Zugriffsbeschränkungen) / Access restrictions</li>
+            <li>Regelmäßige Sicherheitsüberprüfungen / Regular security reviews</li>
+        </ul>
+
+        <!-- ==================== CHANGES ==================== -->
+        <h2>8. Änderungen / Changes</h2>
+        <p>Wir können diese Datenschutzerklärung gelegentlich aktualisieren. Wesentliche Änderungen werden in der App bekannt gegeben.<br>
+        <span class="lang-en">We may update this privacy policy occasionally. Significant changes will be announced in the app.</span></p>
+
+        <!-- ==================== CONTACT ==================== -->
+        <div class="contact-box" id="contact">
+            <h2>📧 Kontakt / Contact</h2>
+            <p>Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte:<br>
+            <span class="lang-en">For privacy questions or to exercise your rights:</span></p>
+            <p><strong>E-Mail:</strong> <a href="mailto:developeryp1@gmail.com">developeryp1@gmail.com</a></p>
+            <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">
+                Wir antworten in der Regel innerhalb von 30 Tagen.<br>
+                <span class="lang-en">We typically respond within 30 days.</span>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

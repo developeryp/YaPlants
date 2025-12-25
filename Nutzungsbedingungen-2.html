@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutzungsbedingungen – PflanzenApp</title>
+    <style>
+        :root {
+            --bg: #BDDAB8;
+            --green-dark: #1A4830;
+            --green: #238D47;
+            --green-light: #A3E6B8;
+            --mint: #C7F5E0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--mint) 50%, var(--green-light) 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--green-dark);
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(26, 72, 48, 0.15);
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        
+        .back-link:hover {
+            color: var(--green-dark);
+        }
+        
+        h1 {
+            color: var(--green-dark);
+            margin-bottom: 5px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .subtitle {
+            color: var(--green);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .last-updated {
+            background: var(--mint);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+        
+        h2 {
+            color: var(--green-dark);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--green-light);
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            color: var(--green);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: var(--mint);
+            border-left: 4px solid var(--green);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        
+        .danger-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        
+        a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-box {
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        
+        .contact-box h2 {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.3);
+            margin-top: 0;
+        }
+        
+        .contact-box a {
+            color: var(--mint);
+        }
+        
+        hr {
+            border: none;
+            height: 1px;
+            background: var(--green-light);
+            margin: 40px 0;
+        }
+        
+        .lang-en {
+            color: #555;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .toc ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .toc li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Zurück / Back</a>
+        
+        <h1>📜 Nutzungsbedingungen</h1>
+        <p class="subtitle">Terms of Use</p>
+        
+        <div class="last-updated">
+            <strong>Stand / Last Updated:</strong> 25. Dezember 2025
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <h3>📑 Inhalt / Contents</h3>
+            <ul>
+                <li><a href="#scope">Geltungsbereich / Scope</a></li>
+                <li><a href="#eligibility">Berechtigung / Eligibility</a></li>
+                <li><a href="#account">Konto / Account</a></li>
+                <li><a href="#usage">Nutzungsregeln / Usage Rules</a></li>
+                <li><a href="#content">Inhalte / Content</a></li>
+                <li><a href="#plantid">Pflanzenidentifikation / Plant Identification</a></li>
+                <li><a href="#ip">Geistiges Eigentum / Intellectual Property</a></li>
+                <li><a href="#disclaimer">Haftungsausschluss / Disclaimer</a></li>
+                <li><a href="#termination">Kündigung / Termination</a></li>
+                <li><a href="#disputes">Streitbeilegung / Dispute Resolution</a></li>
+                <li><a href="#changes">Änderungen / Changes</a></li>
+                <li><a href="#contact">Kontakt / Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- ==================== SCOPE ==================== -->
+        <h2 id="scope">1. Geltungsbereich / Scope</h2>
+        <p>Diese Nutzungsbedingungen ("Bedingungen") gelten für die Nutzung der PflanzenApp ("App") weltweit. Mit der Nutzung der App akzeptieren Sie diese Bedingungen.<br>
+        <span class="lang-en">These Terms of Use ("Terms") apply to the use of PflanzenApp ("App") worldwide. By using the App, you agree to these Terms.</span></p>
+        
+        <p><strong>Betreiber / Operator:</strong> Yacouba Pfälzner<br>
+        <strong>E-Mail:</strong> <a href="mailto:developeryp1@gmail.com">developeryp1@gmail.com</a></p>
+
+        <!-- ==================== ELIGIBILITY ==================== -->
+        <h2 id="eligibility">2. Berechtigung / Eligibility</h2>
+        
+        <div class="highlight-box">
+            <strong>🚸 Altersanforderung / Age Requirement:</strong><br>
+            Sie müssen mindestens <strong>13 Jahre</strong> alt sein, um diese App zu nutzen.<br>
+            In einigen Ländern kann das Mindestalter höher sein (z.B. 16 Jahre in einigen EU-Ländern).<br>
+            <span class="lang-en">You must be at least <strong>13 years old</strong> to use this App.<br>
+            In some countries, the minimum age may be higher (e.g., 16 in some EU countries).</span>
+        </div>
+        
+        <p>Durch die Registrierung bestätigen Sie, dass Sie:<br>
+        <span class="lang-en">By registering, you confirm that you:</span></p>
+        <ul>
+            <li>Das erforderliche Mindestalter erreicht haben / Have reached the required minimum age</li>
+            <li>Rechtlich in der Lage sind, Verträge einzugehen / Are legally able to enter into contracts</li>
+            <li>Diese Bedingungen vollständig akzeptieren / Fully accept these Terms</li>
+        </ul>
+
+        <!-- ==================== ACCOUNT ==================== -->
+        <h2 id="account">3. Konto / Account</h2>
+        
+        <h3>3.1 Registrierung / Registration</h3>
+        <ul>
+            <li>Gültige E-Mail-Adresse erforderlich / Valid email address required</li>
+            <li>Benutzername: 2-20 Zeichen, einzigartig / Username: 2-20 characters, unique</li>
+            <li>Passwort: Min. 6 Zeichen, Groß-/Kleinbuchstaben, Zahl, Sonderzeichen / Password: Min. 6 characters, upper/lowercase, number, special character</li>
+        </ul>
+
+        <h3>3.2 Kontosicherheit / Account Security</h3>
+        <p>Sie sind verantwortlich für / You are responsible for:</p>
+        <ul>
+            <li>Die Sicherheit Ihrer Anmeldedaten / Security of your login credentials</li>
+            <li>Alle Aktivitäten unter Ihrem Konto / All activities under your account</li>
+            <li>Unverzügliche Meldung bei unbefugtem Zugriff / Immediate notification of unauthorized access</li>
+        </ul>
+
+        <h3>3.3 Ein Konto pro Person / One Account Per Person</h3>
+        <p>Jede Person darf nur ein Konto besitzen. Mehrfachkonten können zur Sperrung führen.<br>
+        <span class="lang-en">Each person may only have one account. Multiple accounts may result in suspension.</span></p>
+
+        <!-- ==================== USAGE RULES ==================== -->
+        <h2 id="usage">4. Nutzungsregeln / Usage Rules</h2>
+        
+        <h3>4.1 Erlaubte Nutzung / Permitted Use</h3>
+        <ul>
+            <li>Persönliche Pflanzendokumentation / Personal plant documentation</li>
+            <li>Teilen von eigenen Pflanzenfotos / Sharing your own plant photos</li>
+            <li>Community-Interaktion (Folgen, Liken, Kommentieren) / Community interaction (following, liking, commenting)</li>
+            <li>Pflanzenidentifikation / Plant identification</li>
+        </ul>
+
+        <h3>4.2 Verboten / Prohibited</h3>
+        <div class="danger-box">
+            <strong>❌ Folgende Aktivitäten sind verboten / The following activities are prohibited:</strong>
+            <ul style="margin-bottom: 0;">
+                <li>Nicht-pflanzenbezogene Inhalte / Non-plant-related content</li>
+                <li>Beleidigungen, Hassrede, Diskriminierung / Insults, hate speech, discrimination</li>
+                <li>Spam, Werbung, kommerzielle Inhalte / Spam, advertising, commercial content</li>
+                <li>Urheberrechtsverletzungen / Copyright infringement</li>
+                <li>Illegale Inhalte oder Aktivitäten / Illegal content or activities</li>
+                <li>Inhalte zu illegalen Substanzen / Content about illegal substances</li>
+                <li>Manipulation oder Missbrauch der App / Manipulation or abuse of the App</li>
+                <li>Umgehung von Sperren durch Mehrfachkonten / Circumventing bans via multiple accounts</li>
+                <li>Automatisierte Zugriffe (Bots, Scraping) / Automated access (bots, scraping)</li>
+                <li>Verbreitung von Malware oder schädlichem Code / Spreading malware or harmful code</li>
+            </ul>
+        </div>
+
+        <!-- ==================== CONTENT ==================== -->
+        <h2 id="content">5. Inhalte / Content</h2>
+        
+        <h3>5.1 Ihre Inhalte / Your Content</h3>
+        <p>Sie behalten alle Rechte an Ihren Inhalten. Mit dem Hochladen gewähren Sie uns eine weltweite, nicht-exklusive, gebührenfreie Lizenz zur Anzeige Ihrer Inhalte innerhalb der App.<br>
+        <span class="lang-en">You retain all rights to your content. By uploading, you grant us a worldwide, non-exclusive, royalty-free license to display your content within the App.</span></p>
+
+        <h3>5.2 Verantwortung / Responsibility</h3>
+        <p>Sie sind allein verantwortlich für Inhalte, die Sie hochladen. Sie garantieren, dass:<br>
+        <span class="lang-en">You are solely responsible for content you upload. You warrant that:</span></p>
+        <ul>
+            <li>Sie die Rechte an den Inhalten besitzen / You own the rights to the content</li>
+            <li>Die Inhalte keine Rechte Dritter verletzen / The content does not infringe third-party rights</li>
+            <li>Die Inhalte nicht gegen Gesetze verstoßen / The content does not violate laws</li>
+        </ul>
+
+        <h3>5.3 Moderation</h3>
+        <p>Wir behalten uns das Recht vor, Inhalte ohne Vorankündigung zu entfernen, die gegen diese Bedingungen verstoßen.<br>
+        <span class="lang-en">We reserve the right to remove content that violates these Terms without prior notice.</span></p>
+
+        <!-- ==================== PLANT ID ==================== -->
+        <h2 id="plantid">6. Pflanzenidentifikation / Plant Identification</h2>
+        
+        <div class="warning-box">
+            <strong>⚠️ WICHTIGER HINWEIS / IMPORTANT NOTICE:</strong><br><br>
+            Die automatische Pflanzenidentifikation dient ausschließlich zu <strong>Informations- und Unterhaltungszwecken</strong>.<br>
+            <span class="lang-en">Automatic plant identification is for <strong>informational and entertainment purposes only</strong>.</span>
+            <ul style="margin-bottom: 0;">
+                <li>Ergebnisse können fehlerhaft sein / Results may be incorrect</li>
+                <li>Keine Garantie für Genauigkeit / No guarantee of accuracy</li>
+                <li>Nicht für medizinische Zwecke geeignet / Not suitable for medical purposes</li>
+                <li>Nicht zur Bestimmung essbarer Pflanzen verwenden / Do not use to identify edible plants</li>
+                <li>Nicht zur Bestimmung giftiger Pflanzen verwenden / Do not use to identify poisonous plants</li>
+                <li>Bei Unsicherheit konsultieren Sie einen Fachexperten / When in doubt, consult an expert</li>
+            </ul>
+        </div>
+        
+        <p><strong>Wir übernehmen keine Haftung für Schäden, die durch fehlerhafte Pflanzenidentifikation entstehen.</strong><br>
+        <span class="lang-en"><strong>We accept no liability for damages resulting from incorrect plant identification.</strong></span></p>
+
+        <!-- ==================== IP ==================== -->
+        <h2 id="ip">7. Geistiges Eigentum / Intellectual Property</h2>
+        
+        <h3>7.1 App-Inhalte / App Content</h3>
+        <p>Die App, ihr Design, Code, Logos und alle zugehörigen Inhalte sind urheberrechtlich geschützt.<br>
+        <span class="lang-en">The App, its design, code, logos, and all related content are protected by copyright.</span></p>
+
+        <h3>7.2 Nutzungsrechte / License</h3>
+        <p>Wir gewähren Ihnen eine begrenzte, nicht-exklusive, nicht übertragbare Lizenz zur persönlichen Nutzung der App.<br>
+        <span class="lang-en">We grant you a limited, non-exclusive, non-transferable license for personal use of the App.</span></p>
+
+        <h3>7.3 Einschränkungen / Restrictions</h3>
+        <p>Sie dürfen nicht / You may not:</p>
+        <ul>
+            <li>Die App kopieren, modifizieren oder dekompilieren / Copy, modify, or decompile the App</li>
+            <li>Die App für kommerzielle Zwecke nutzen / Use the App for commercial purposes</li>
+            <li>Marken oder Logos ohne Genehmigung verwenden / Use trademarks or logos without permission</li>
+        </ul>
+
+        <!-- ==================== DISCLAIMER ==================== -->
+        <h2 id="disclaimer">8. Haftungsausschluss / Disclaimer</h2>
+        
+        <h3>8.1 Bereitstellung / Provision</h3>
+        <p>Die App wird <strong>"wie besehen"</strong> und <strong>"wie verfügbar"</strong> bereitgestellt, ohne ausdrückliche oder stillschweigende Gewährleistung.<br>
+        <span class="lang-en">The App is provided <strong>"as is"</strong> and <strong>"as available"</strong> without express or implied warranty.</span></p>
+
+        <h3>8.2 Keine Garantie für / No Guarantee Of</h3>
+        <ul>
+            <li>Ununterbrochene oder fehlerfreie Verfügbarkeit / Uninterrupted or error-free availability</li>
+            <li>Genauigkeit der Pflanzenidentifikation / Accuracy of plant identification</li>
+            <li>Sicherheit vor Datenverlust / Protection against data loss</li>
+            <li>Inhalte anderer Nutzer / Content from other users</li>
+        </ul>
+
+        <h3>8.3 Haftungsbeschränkung / Limitation of Liability</h3>
+        <p>Soweit gesetzlich zulässig, haften wir nicht für:<br>
+        <span class="lang-en">To the extent permitted by law, we are not liable for:</span></p>
+        <ul>
+            <li>Indirekte, zufällige oder Folgeschäden / Indirect, incidental, or consequential damages</li>
+            <li>Entgangenen Gewinn oder Datenverlust / Lost profits or data loss</li>
+            <li>Schäden durch Dritte oder externe Dienste / Damages from third parties or external services</li>
+            <li>Schäden durch fehlerhafte Pflanzenidentifikation / Damages from incorrect plant identification</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>Hinweis / Note:</strong> Einige Rechtsordnungen erlauben keine Haftungsbeschränkungen. In diesem Fall gelten die gesetzlichen Mindestrechte.<br>
+            <span class="lang-en">Some jurisdictions do not allow liability limitations. In such cases, statutory minimum rights apply.</span>
+        </div>
+
+        <!-- ==================== TERMINATION ==================== -->
+        <h2 id="termination">9. Kündigung / Termination</h2>
+        
+        <h3>9.1 Durch Sie / By You</h3>
+        <p>Sie können Ihr Konto jederzeit in den Profileinstellungen löschen. Alle Daten werden dabei unwiderruflich gelöscht.<br>
+        <span class="lang-en">You can delete your account anytime in profile settings. All data will be permanently deleted.</span></p>
+
+        <h3>9.2 Durch Uns / By Us</h3>
+        <p>Wir können Konten sperren oder löschen bei:<br>
+        <span class="lang-en">We may suspend or delete accounts for:</span></p>
+        <ul>
+            <li>Verstoß gegen diese Bedingungen / Violation of these Terms</li>
+            <li>Illegalen Aktivitäten / Illegal activities</li>
+            <li>Missbrauch der App oder anderer Nutzer / Abuse of the App or other users</li>
+            <li>Längerer Inaktivität (nach Vorankündigung) / Extended inactivity (with notice)</li>
+        </ul>
+
+        <!-- ==================== DISPUTES ==================== -->
+        <h2 id="disputes">10. Streitbeilegung / Dispute Resolution</h2>
+        
+        <h3>10.1 Anwendbares Recht / Governing Law</h3>
+        <p>Diese Bedingungen unterliegen deutschem Recht, unbeschadet zwingender Verbraucherschutzvorschriften Ihres Wohnsitzlandes.<br>
+        <span class="lang-en">These Terms are governed by German law, without prejudice to mandatory consumer protection provisions of your country of residence.</span></p>
+
+        <h3>10.2 Streitbeilegung / Resolution</h3>
+        <p>Bei Streitigkeiten empfehlen wir zunächst eine gütliche Einigung per E-Mail. Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br>
+        <span class="lang-en">For disputes, we recommend first seeking an amicable resolution via email. The European Commission provides an Online Dispute Resolution (ODR) platform:</span></p>
+        <p><a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a></p>
+
+        <h3>10.3 Gerichtsstand / Jurisdiction</h3>
+        <p>Für Nutzer mit Wohnsitz in der EU/EEA gilt der Gerichtsstand ihres Wohnsitzlandes für Verbraucherstreitigkeiten.<br>
+        <span class="lang-en">For users residing in the EU/EEA, the courts of their country of residence have jurisdiction for consumer disputes.</span></p>
+
+        <!-- ==================== CHANGES ==================== -->
+        <h2 id="changes">11. Änderungen / Changes</h2>
+        <p>Wir können diese Bedingungen ändern. Bei wesentlichen Änderungen werden Sie:<br>
+        <span class="lang-en">We may modify these Terms. For material changes, you will be:</span></p>
+        <ul>
+            <li>In der App benachrichtigt / Notified in the App</li>
+            <li>Gebeten, die neuen Bedingungen zu akzeptieren / Asked to accept the new Terms</li>
+        </ul>
+        <p>Die fortgesetzte Nutzung nach Inkrafttreten gilt als Zustimmung.<br>
+        <span class="lang-en">Continued use after the effective date constitutes acceptance.</span></p>
+
+        <!-- ==================== SEVERABILITY ==================== -->
+        <h2>12. Salvatorische Klausel / Severability</h2>
+        <p>Sollte eine Bestimmung dieser Bedingungen unwirksam sein, bleiben die übrigen Bestimmungen wirksam.<br>
+        <span class="lang-en">If any provision of these Terms is invalid, the remaining provisions remain in effect.</span></p>
+
+        <!-- ==================== CONTACT ==================== -->
+        <div class="contact-box" id="contact">
+            <h2>📧 Kontakt / Contact</h2>
+            <p>Bei Fragen zu diesen Nutzungsbedingungen:<br>
+            <span class="lang-en">For questions about these Terms of Use:</span></p>
+            <p><strong>E-Mail:</strong> <a href="mailto:developeryp1@gmail.com">developeryp1@gmail.com</a></p>
+        </div>
+    </div>
+</body>
+</html>
