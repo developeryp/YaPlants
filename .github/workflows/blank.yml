@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passwort zurücksetzen</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a2f1a 0%, #0d1a0d 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            padding-right: 48px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        
+        .toggle-password svg {
+            width: 20px;
+            height: 20px;
+            fill: rgba(255, 255, 255, 0.4);
+        }
+        
+        .toggle-password:hover svg {
+            fill: rgba(255, 255, 255, 0.7);
+        }
+        
+        .requirements {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 24px;
+        }
+        
+        .requirements p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .requirement {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 4px;
+        }
+        
+        .requirement.valid {
+            color: #4CAF50;
+        }
+        
+        .requirement svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+        
+        button[type="submit"] {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(76, 175, 80, 0.3);
+        }
+        
+        button[type="submit"]:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .error {
+            background: rgba(244, 67, 54, 0.15);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            color: #ff6b6b;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .success-container {
+            text-align: center;
+            display: none;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+        
+        .success-container h2 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .success-container p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Expired/Error State */
+        .expired-container {
+            text-align: center;
+            display: none;
+        }
+        
+        .expired-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(244, 67, 54, 0.15);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .expired-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: #ff6b6b;
+        }
+        
+        .expired-container h2 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .expired-container p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        
+        .back-link {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Form Container -->
+        <div id="formContainer">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            
+            <h1>Neues Passwort festlegen</h1>
+            <p class="subtitle">Gib dein neues Passwort für die PflanzenApp ein.</p>
+            
+            <div class="error" id="errorMessage"></div>
+            
+            <form id="resetForm">
+                <div class="form-group">
+                    <label for="password">Neues Passwort</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Mindestens 6 Zeichen" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                            <svg id="eyeIcon1" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Passwort bestätigen</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirmPassword" placeholder="Passwort wiederholen" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+                            <svg id="eyeIcon2" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="requirements">
+                    <p>Passwort-Anforderungen:</p>
+                    <div class="requirement" id="reqLength">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Mindestens 6 Zeichen
+                    </div>
+                    <div class="requirement" id="reqLower">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Ein Kleinbuchstabe
+                    </div>
+                    <div class="requirement" id="reqUpper">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Ein Großbuchstabe
+                    </div>
+                    <div class="requirement" id="reqNumber">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Eine Zahl
+                    </div>
+                    <div class="requirement" id="reqSpecial">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Ein Sonderzeichen (!@#$%...)
+                    </div>
+                    <div class="requirement" id="reqMatch">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Passwörter stimmen überein
+                    </div>
+                </div>
+                
+                <button type="submit" id="submitBtn" disabled>
+                    Passwort ändern
+                </button>
+            </form>
+        </div>
+        
+        <!-- Success Container -->
+        <div class="success-container" id="successContainer">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <h2>Passwort geändert! ✓</h2>
+            <p>Dein Passwort wurde erfolgreich aktualisiert.<br>Du kannst dich jetzt in der PflanzenApp mit deinem neuen Passwort anmelden.</p>
+        </div>
+        
+        <!-- Expired/Error Container -->
+        <div class="expired-container" id="expiredContainer">
+            <div class="expired-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            </div>
+            <h2>Link abgelaufen</h2>
+            <p>Dieser Link ist leider abgelaufen oder ungültig.<br>Bitte fordere in der App einen neuen Passwort-Reset-Link an.</p>
+        </div>
+    </div>
+    
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // WICHTIG: Ersetze diese Werte mit deinen Supabase-Daten!
+        // ═══════════════════════════════════════════════════════════════
+        const SUPABASE_URL = 'https://fsxwzcduvhmhiqfzmslh.supabase.co';
+        const SUPABASE_ANON_KEY = 'DEIN_ANON_KEY_HIER'; // ← Ersetze dies!
+        // ═══════════════════════════════════════════════════════════════
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        let accessToken = null;
+        let refreshToken = null;
+        
+        // Parse URL for tokens
+        async function init() {
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            
+            // Check for error in URL
+            const error = params.get('error');
+            const errorCode = params.get('error_code');
+            
+            if (error || errorCode) {
+                showExpired();
+                return;
+            }
+            
+            accessToken = params.get('access_token');
+            refreshToken = params.get('refresh_token');
+            const type = params.get('type');
+            
+            if (!accessToken || type !== 'recovery') {
+                // Also check query params
+                const queryParams = new URLSearchParams(window.location.search);
+                if (queryParams.get('error_code')) {
+                    showExpired();
+                    return;
+                }
+                showExpired();
+                return;
+            }
+            
+            // Set session
+            try {
+                const { data, error } = await supabase.auth.setSession({
+                    access_token: accessToken,
+                    refresh_token: refreshToken
+                });
+                
+                if (error) {
+                    console.error('Session error:', error);
+                    showExpired();
+                    return;
+                }
+                
+                // Session valid, show form
+                document.getElementById('formContainer').style.display = 'block';
+            } catch (e) {
+                console.error('Init error:', e);
+                showExpired();
+            }
+        }
+        
+        function showExpired() {
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('expiredContainer').style.display = 'block';
+        }
+        
+        // Password validation
+        const passwordInput = document.getElementById('password');
+        const confirmInput = document.getElementById('confirmPassword');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        function validatePassword() {
+            const password = passwordInput.value;
+            const confirm = confirmInput.value;
+            
+            const hasLength = password.length >= 6;
+            const hasLower = /[a-z]/.test(password);
+            const hasUpper = /[A-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSpecial = /[!@#$%^&*(),.?":{}|<>_\-+=\[\]\\\/`~]/.test(password);
+            const matches = password === confirm && confirm.length > 0;
+            
+            document.getElementById('reqLength').classList.toggle('valid', hasLength);
+            document.getElementById('reqLower').classList.toggle('valid', hasLower);
+            document.getElementById('reqUpper').classList.toggle('valid', hasUpper);
+            document.getElementById('reqNumber').classList.toggle('valid', hasNumber);
+            document.getElementById('reqSpecial').classList.toggle('valid', hasSpecial);
+            document.getElementById('reqMatch').classList.toggle('valid', matches);
+            
+            const isValid = hasLength && hasLower && hasUpper && hasNumber && hasSpecial && matches;
+            submitBtn.disabled = !isValid;
+            
+            return isValid;
+        }
+        
+        passwordInput.addEventListener('input', validatePassword);
+        confirmInput.addEventListener('input', validatePassword);
+        
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+        
+        // Form submit
+        document.getElementById('resetForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!validatePassword()) return;
+            
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.style.display = 'none';
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span>Wird geändert...';
+            
+            try {
+                const { data, error } = await supabase.auth.updateUser({
+                    password: passwordInput.value
+                });
+                
+                if (error) {
+                    throw error;
+                }
+                
+                // Success!
+                document.getElementById('formContainer').style.display = 'none';
+                document.getElementById('successContainer').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Update error:', error);
+                errorDiv.textContent = 'Fehler: ' + (error.message || 'Unbekannter Fehler');
+                errorDiv.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Passwort ändern';
+            }
+        });
+        
+        // Initialize
+        init();
+    </script>
+</body>
+</html>
